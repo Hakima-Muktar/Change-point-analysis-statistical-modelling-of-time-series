@@ -68,3 +68,71 @@ Prerequisites
 Python 3.8+
 Node.js 14+
 npm or yarn
+#### Task 3: Developing Interactive Dashboard
+ Interactive Price Charts: Dynamic Recharts implementation with date-range filters (1Y, 5Y, All).
+ Regime Shift Overlays: Change point markers automatically overlaid on historical price data.
+ Event Correlation: Visual links between price shocks and documented geopolitical events.
+ Responsive UI: Optimized for all screen sizes using Tailwind CSS grid and flexbox.
+##### Dashboard Features & Views:
+Analytics View (Main):
+Trend Chart: Visualizes the last 10+ years of Brent oil prices.
+Date Range Controls: Toggle between 1-year, 5-year, and full dataset views.
+Change Point Markers: Red dashed line indicating the model's most probable regime shift date.
+Event Timeline (Sidebar):
+Categorized Events: Scrollable list of 15 major events (Conflict, Sanctions, OPEC).
+Date Sync: Each event displays the precise date, category, and historical context.
+KPI Cards:
+Volatility Shift: Quantified % change in market volatility after the detected change point.
+Mean Change: Shift in average price returns observed after the event.
+Responsiveness Behavior:
+Desktop: 12-column grid with a 3:1 ratio between the chart and the event sidebar.
+Tablet/Mobile: Single-column vertical layout where the sidebar drops below the chart for optimal readability on touch devices.
+Dynamic Sizing: Charts utilize ResponsiveContainer to adapt height and width fluidly.
+Setup & Execution
+## 1. Backend API (Flask)
+```cd backend```
+```pip install -r ../requirements.txt```
+python3 run.py
+API serves on localhost:5000
+
+## 2. Frontend Dashboard (React)
+```cd frontend```
+```npm install```
+```npm start```
+Dashboard serves on localhost:3000
+
+### Technology Stack
+Analysis: Python, PyMC, Pandas, NumPy, Matplotlib
+Backend: Flask, Flask-CORS
+Frontend: React, Recharts/D3.js
+Statistical Methods: Bayesian inference, MCMC sampling
+Installation & Setup
+Backend (Flask API)
+Navigate to backend directory:
+```cd backend```
+Install dependencies:
+```pip install -r ../requirements.txt```
+Run the server:
+python3 run.py
+The API will be available at http://127.0.0.1:5000/api.
+Frontend (React Dashboard)
+Navigate to frontend directory:
+cd frontend
+Install dependencies:
+```npm install```
+Run the dashboard:
+```npm start```
+The dashboard will open at http://localhost:3000.
+#### API Documentation
+Endpoint	Method	Description
+/api/prices	GET	Returns historical Brent oil prices (Date, Price)
+/api/events	GET	Returns curated geopolitical events with categories and descriptions
+/api/changepoint	GET	Returns summary of the detected regime shift and its quantified impact
+/api/changepoint/trace	GET	Returns MCMC sampling results for model parameters
+/api/volatility	GET	Returns daily stochastic volatility estimates
+#### Analysis Insights
+Our Bayesian analysis identified a significant structural change point in early 2019, closely associated with the US ending Iran Sanctions Waivers. Post-event analysis revealed:
+
+Volatility Increase: Approximately 127% increase in market volatility following the shift.
+Regime Transition: The market moved from a period of relative stability to one characterized by frequent high-magnitude shocks.
+Model Efficacy: The Bayesian model successfully "priced in" the shock approximately 20 days before the official waiver expiration.
